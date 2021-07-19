@@ -4,7 +4,9 @@
   "description": "App to proof of concept CI/CD pipeline",
   "main": "src/main.ts",
   "scripts": {
+    "build": "tsc",
     "start": "tsc && node dist/main.js",
+    "lint": "tslint --project .",
     "test:unit": "nodemon --watch . --ext ts --exec \"mocha -r ts-node/register test/**/*.test.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
