@@ -5,7 +5,7 @@
   "main": "src/main.ts",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node dist/main.js",
+    "start": "node dist/main.js",
     "lint": "tslint --project .",
     "test:ci": "tsc && mocha -r ts-node/register test/**/*.test.ts --exit",
     "test:unit": "nodemon --watch . --ext ts --exec \"mocha -r ts-node/register test/**/*.test.ts\"",
