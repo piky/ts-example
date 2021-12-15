@@ -28,4 +28,5 @@ RUN chown -R 1000:1000 ./
 
 USER 1000
 
-CMD ["npm", "run", "start"]
+ENTRYPOINT [ "npm", "run" ]
+CMD ["start"]
