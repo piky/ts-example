@@ -1,0 +1,26 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-webapp
+  labels:
+    app: backend
+    project: demo
+    tier: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+      tier: api
+  template:
+    metadata:
+      labels:
+        app: backend
+        tier: api
+    spec:
+      containers:
+      - name: ts-example
+        image: dukecyber/ts-example:dev-v1.0
+        ports:
+        - containerPort: 8080

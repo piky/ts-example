@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1 (Python 3.9.6 on linux)" generated="20210720 11:26:27.901" rpa="false" schemaversion="2">
+<suite id="s1" name="Robot" source="/robot">
+<suite id="s1-s1" name="Example" source="/robot/example.robot">
+<test id="s1-s1-t1" name="Valid Root Path">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>tsxample</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20210720 11:26:28.112" level="INFO">Creating Session using : alias=tsxample, url=https://lego-lab.opsta.in.th, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20210720 11:26:28.111" endtime="20210720 11:26:28.112"/>
+</kw>
+<kw name="Get On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>tsxample</arg>
+<arg>/</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20210720 11:26:28.445" level="INFO">GET Request : url=https://lego-lab.opsta.in.th/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20210720 11:26:28.445" level="INFO">GET Response : url=https://lego-lab.opsta.in.th/ 
+ status=404, reason=Not Found 
+ headers={'Date': 'Tue, 20 Jul 2021 11:26:28 GMT', 'Content-Type': 'text/plain; charset=utf-8', 'Content-Length': '21', 'Connection': 'keep-alive', 'Strict-Transport-Security': 'max-age=15724800; includeSubDomains', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=L6EOI4OJXCgyck2Iua%2BOWNPTsfmGjVycvcQ0hG3QMe9r6LJxR86q34uvB1FsyR1dUBw7vSkUStoKggGvZFYuBWtZsAeLv3aYtwYxhTkAmDntYs4e%2FAx9bK8JLUc38NS2mgKh1wXu2g%3D%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '671bd5b20ea25bef-BKK', 'alt-svc': 'h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443"; ma=86400, h3=":443"; ma=86400'} 
+ body=default backend - 404 
+ </msg>
+<msg timestamp="20210720 11:26:28.445" level="INFO">/usr/local/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'lego-lab.opsta.in.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210720 11:26:28.448" level="FAIL">HTTPError: 404 Client Error: Not Found for url: https://lego-lab.opsta.in.th/</msg>
+<status status="FAIL" starttime="20210720 11:26:28.112" endtime="20210720 11:26:28.448"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${resp}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<status status="NOT RUN" starttime="20210720 11:26:28.449" endtime="20210720 11:26:28.449"/>
+</kw>
+<tag>get</tag>
+<tag>root</tag>
+<status status="FAIL" starttime="20210720 11:26:28.110" endtime="20210720 11:26:28.450">HTTPError: 404 Client Error: Not Found for url: https://lego-lab.opsta.in.th/</status>
+</test>
+<test id="s1-s1-t2" name="Post Json Request Test">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${data}</var>
+<arg>title=Robotframework requests</arg>
+<arg>body=This is a test!</arg>
+<arg>userId=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20210720 11:26:28.454" level="INFO">${data} = {'title': 'Robotframework requests', 'body': 'This is a test!', 'userId': '1'}</msg>
+<status status="PASS" starttime="20210720 11:26:28.453" endtime="20210720 11:26:28.454"/>
+</kw>
+<kw name="Post On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>tsxample</arg>
+<arg>/mirror</arg>
+<arg>json=${data}</arg>
+<arg>expected_status=anything</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20210720 11:26:28.563" level="INFO">POST Request : url=https://lego-lab.opsta.in.th/mirror 
+ path_url=/mirror 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '78', 'Content-Type': 'application/json'} 
+ body=b'{"title": "Robotframework requests", "body": "This is a test!", "userId": "1"}' 
+ </msg>
+<msg timestamp="20210720 11:26:28.564" level="INFO">POST Response : url=https://lego-lab.opsta.in.th/mirror 
+ status=404, reason=Not Found 
+ headers={'Date': 'Tue, 20 Jul 2021 11:26:28 GMT', 'Content-Type': 'text/plain; charset=utf-8', 'Content-Length': '21', 'Connection': 'keep-alive', 'Strict-Transport-Security': 'max-age=15724800; includeSubDomains', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=ajmMTTOlkJ5MTUzkmG5Ln5Ur0HkKyrFtHicFLQWzf7OsU8UmtBvNMhi16t6q5CUv6ZiDqo4hIT%2BB%2BW0XAZVUCxa50SEc4kJZsiq0%2Bz%2ByyKlAVXwLs1d9zqP87eor2shLehZ5%2BrzzIA%3D%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '671bd5b378715bef-BKK', 'alt-svc': 'h3-27=":443"; ma=86400, h3-28=":443"; ma=86400, h3-29=":443"; ma=86400, h3=":443"; ma=86400'} 
+ body=default backend - 404 
+ </msg>
+<msg timestamp="20210720 11:26:28.564" level="INFO">/usr/local/lib/python3.9/site-packages/urllib3/connectionpool.py:1013: InsecureRequestWarning: Unverified HTTPS request is being made to host 'lego-lab.opsta.in.th'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/1.26.x/advanced-usage.html#ssl-warnings
+  warnings.warn(</msg>
+<msg timestamp="20210720 11:26:28.565" level="INFO">${resp} = &lt;Response [404]&gt;</msg>
+<status status="PASS" starttime="20210720 11:26:28.454" endtime="20210720 11:26:28.565"/>
+</kw>
+<kw name="Status Should Be" library="RequestsLibrary">
+<arg>200</arg>
+<arg>${resp}</arg>
+<doc>Fails if response status code is different than the expected.</doc>
+<msg timestamp="20210720 11:26:28.568" level="FAIL">Url: https://lego-lab.opsta.in.th/mirror Expected status: 404 != 200</msg>
+<status status="FAIL" starttime="20210720 11:26:28.565" endtime="20210720 11:26:28.568"/>
+</kw>
+<tag>mirror</tag>
+<tag>post</tag>
+<status status="FAIL" starttime="20210720 11:26:28.452" endtime="20210720 11:26:28.569">Url: https://lego-lab.opsta.in.th/mirror Expected status: 404 != 200</status>
+</test>
+<doc>Demo Robot Framework</doc>
+<status status="FAIL" starttime="20210720 11:26:27.923" endtime="20210720 11:26:28.571"/>
+</suite>
+<status status="FAIL" starttime="20210720 11:26:27.902" endtime="20210720 11:26:28.573"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="2" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1" skip="0">get</stat>
+<stat pass="0" fail="1" skip="0">mirror</stat>
+<stat pass="0" fail="1" skip="0">post</stat>
+<stat pass="0" fail="1" skip="0">root</stat>
+</tag>
+<suite>
+<stat pass="0" fail="2" skip="0" id="s1" name="Robot">Robot</stat>
+<stat pass="0" fail="2" skip="0" id="s1-s1" name="Example">Robot.Example</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

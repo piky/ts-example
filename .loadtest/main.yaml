@@ -1,0 +1,43 @@
+---
+settings:
+  check-interval: 5s
+  default-executor: jmeter
+  env:
+    BASE_URL: "http://localhost:8080"
+
+reporting:
+- module: final-stats
+- module: console
+
+execution:
+- concurrency: 50   # use `my_conc` prop or default=3 if property isn't found
+  ramp-up: 3
+  throughput: 20
+  hold-for: 1m
+  scenario: tsxample
+
+modules:
+  jmeter:
+    gui: false
+
+scenarios:
+  tsxample:
+    store-cache: false
+    store-cookie: false
+    follow-redirects: true
+    default-address: ${BASE_URL}
+    think-time: 400ms
+    #timeout: 1s
+    requests:
+      - url: /
+        label: 'Root path'
+        method: GET
+        #assert-jsonpath:
+        #  - "$."
+      - url: /mirror
+        method: POST
+        label: 'JSON dump'
+        headers:
+          Content-Type: application/json
+        body:
+          '{"user":"start","roll":"mentor"}'
