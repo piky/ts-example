@@ -24,3 +24,9 @@ spec:
         image: dukecyber/ts-example:dev-v1.0
         ports:
         - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          failureThreshold: 1
+          periodSeconds: 10
