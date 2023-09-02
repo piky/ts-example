@@ -10,7 +10,12 @@ on:
 jobs:
   eslint:
     name: eslint
-    runs-on: ubuntu-latest
+    runs-on: ${{ (matrix.language == 'swift' && 'macos-latest') || 'ubuntu-latest' }}
+    timeout-minutes: ${{ (matrix.language == 'swift' && 120) || 360 }}
+    permissions:
+      contents: read
+      packages: read
+      statuses: write
     steps:
     - uses: actions/checkout@v3
     - name: install node v18
