@@ -1,4 +1,4 @@
-FROM node:16-alpine AS tester
+FROM node:18-alpine AS tester
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ RUN npm run lint && \
     npm run test:ci && \
     npm run build
 
-FROM node:16-alpine AS runner
+FROM node:18-alpine AS runner
 
 ENV NODE_ENV=production
 
