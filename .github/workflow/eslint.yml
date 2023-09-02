@@ -22,3 +22,5 @@ jobs:
       with:
         eslint: true
         prettier: true
+    - name: Unit testing with Chai
+      run: npm run test:ci
