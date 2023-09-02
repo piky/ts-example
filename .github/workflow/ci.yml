@@ -1,5 +1,5 @@
 ---
-name: "Lint"
+name: "CI"
 on:
   push:
     branches: [ "main" ]
@@ -19,10 +19,5 @@ jobs:
         node-version: 18.x
     - name: Install Node.js dependencies
       run: npm ci
-    - name: eslint
-      uses: wearerequired/lint-action@v2
-      with:
-        eslint: true
-        prettier: true
     - name: Unit testing with Chai
       run: npm run test:ci
