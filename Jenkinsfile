@@ -19,7 +19,7 @@ pipeline {
         stage('Unit Test') {
             steps {
                 sh 'npm install'
-                sh """nodemon --watch . --ext ts --exec 'mocha -r ts-node/register test/**/*.test.ts'"""
+                sh 'mocha -r ts-node/register test/**/*.test.ts'
             }
         }
 
