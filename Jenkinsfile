@@ -55,7 +55,7 @@ pipeline {
                         sh 'curl -sLO https://raw.githubusercontent.com/StartloJ/ts-example/main/k8s/service.yaml'
                         sh 'curl -sLO https://raw.githubusercontent.com/StartloJ/ts-example/main/k8s/ingress.yaml'
                         sh 'ls -l'
-                        sh "sed -i 's\\/dukecyber\\/ts-example:dev-v1.0\\/piky/ts-example:latest/g' deployment.yaml"
+                        sh "sed -i 's/dukecyber\/ts-example:dev-v1.0/piky\/ts-example:latest/g' deployment.yaml"
                         sh 'cat deployment.yaml'
                         // sh 'kubectl apply -f deployment.yaml'
                         // sh 'kubectl apply -f service.yaml'
