@@ -15,12 +15,12 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/piky/ts-example.git']]])
             }
         }
-        // stage('Unit test') {
-        //     steps {
-        //         sh 'npm install'
-        //         // sh 'npm run test:unit'
-        //     }
-        // }
+        stage('Unit test') {
+            steps {
+                sh 'npm install'
+                // sh 'npm run test:unit'
+            }
+        }
 
         // stage('OWASP dependencies Check') {
         //     steps {
