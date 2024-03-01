@@ -55,12 +55,14 @@ pipeline {
                         sh 'curl -sLO https://raw.githubusercontent.com/StartloJ/ts-example/main/k8s/service.yaml'
                         sh 'curl -sLO https://raw.githubusercontent.com/StartloJ/ts-example/main/k8s/ingress.yaml'
                         sh 'ls -l'
+                        sh "sed -i s\/dukecyber\/ts-example:dev-v1.0\/piky/ts-example:latest/g deployment.yaml"
+                        sh 'cat deployment.yaml'
                         // sh 'kubectl apply -f deployment.yaml'
                         // sh 'kubectl apply -f service.yaml'
                         // sh 'kubectl apply -f ingress.yaml'
-                        sleep(30)
-                        sh 'kubectl get svc'
-                        sh 'kubectl get pods'
+                        // sleep(30)
+                        // sh 'kubectl get svc'
+                        // sh 'kubectl get pods'
                     }
                 }
             }
