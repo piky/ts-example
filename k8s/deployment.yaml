@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
       - name: ts-example
-        image: dukecyber/ts-example:dev-v1.0
+        image: piky/ts-example:latest
         ports:
         - containerPort: 8080
         livenessProbe:
