@@ -16,14 +16,14 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "$repository"]]])
             }
         }
-        stage('Unit test') {
+        stage('Unit Test') {
             steps {
                 sh 'npm install'
-                sh 'npm run test:unit'
+                sh """nodemon --watch . --ext ts --exec 'mocha -r ts-node/register test/**/*.test.ts'"""
             }
         }
 
-        stage('OWASP dependencies Check') {
+        stage('OWASP Dependencies Check') {
             steps {
               dependencyCheck additionalArguments: '''
                   -o './'
